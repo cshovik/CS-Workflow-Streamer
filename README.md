@@ -140,6 +140,7 @@ npm run dev
 # Open browser
 http://localhost:5173
 
+```
 
 ###🎯 How It Works
 
