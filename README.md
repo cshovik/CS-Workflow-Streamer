@@ -70,21 +70,18 @@ Start → Task → Approval → Automation → End
 Workflow completed successfully
 
 
----
-
 ## 📁 Project Structure
 
+```bash
 src/
-│
-├── App.tsx # Main application & canvas
-├── workflowTypes.ts # Node types and interfaces
-├── mockApi.ts # Simulated automation actions
-├── main.tsx # Entry point for React
-├── index.css # Styling
-├── index.html # HTML host
-└── assets/ # Icons & images
-
----
+├── App.tsx              # Main application & canvas
+├── workflowTypes.ts     # Node types and interfaces
+├── mockApi.ts           # Simulated automation actions
+├── main.tsx             # Entry point for React
+├── index.css            # Styling
+├── index.html           # HTML host
+└── assets/              # Icons & images
+```
 
 ## 🏗 Architecture Overview
 
