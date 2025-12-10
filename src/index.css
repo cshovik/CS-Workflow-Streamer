@@ -1,0 +1,397 @@
+/* Make the app fill the viewport and prevent page-level scroll */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden; /* no outer scrollbars */
+}
+
+:root {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: #0f172a;
+  background-color: #f1f5f9;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+#root {
+  height: 100vh;
+  width: 100vw;
+}
+
+.app-root {
+  display: grid;
+  grid-template-columns: 220px 1fr 280px;
+  grid-template-rows: 1fr;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden; /* keep grid inside viewport */
+}
+
+/* Sidebar */
+
+.sidebar {
+  padding: 12px;
+  border-right: 1px solid #e2e8f0;
+  background: #f8fafc;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0; /* allow shrink inside grid */
+}
+
+.sidebar-title {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.sidebar-subtitle {
+  margin: 0 0 4px 0;
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+.sidebar-button {
+  border-radius: 6px;
+  border: 1px solid #cbd5e1;
+  padding: 6px 8px;
+  background: #ffffff;
+  cursor: pointer;
+  font-size: 0.9rem;
+  text-align: left;
+}
+
+.sidebar-button:hover {
+  background: #e2e8f0;
+}
+
+.sidebar-button.danger {
+  border-color: #fecaca;
+  color: #b91c1c;
+}
+
+.sidebar-button.danger:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.sidebar-divider {
+  margin: 8px 0;
+  border: none;
+  border-top: 1px solid #e2e8f0;
+}
+
+.sidebar-hint {
+  margin-top: auto;
+  font-size: 0.78rem;
+  color: #64748b;
+}
+
+/* Canvas */
+
+.canvas-container {
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #e2e8f0;
+  min-width: 0; /* IMPORTANT: prevents horizontal overflow */
+}
+
+.canvas-header {
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.app-title {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.canvas-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.test-button {
+  border-radius: 6px;
+  border: none;
+  padding: 6px 12px;
+  background: #4f46e5;
+  color: white;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.test-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* theme toggle button */
+.theme-button {
+  border-radius: 999px;
+  border: none;
+  width: 30px;
+  height: 30px;
+  font-size: 16px;
+  cursor: pointer;
+  background: #e2e8f0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.canvas-inner {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Sandbox panel */
+
+.sandbox-panel {
+  border-top: 1px solid #e2e8f0;
+  padding: 8px 12px;
+  background: #f8fafc;
+  font-size: 0.85rem;
+  max-height: 220px;
+  overflow-y: auto; /* inner scroll only for logs */
+}
+
+.error-box {
+  background: #fee2e2;
+  border-radius: 6px;
+  padding: 6px 8px;
+  margin-bottom: 8px;
+}
+
+.log-box {
+  background: #ecfeff;
+  border-radius: 6px;
+  padding: 6px 8px;
+}
+
+.sandbox-hint {
+  margin: 0;
+  color: #64748b;
+}
+
+/* Config panel */
+
+.config-panel {
+  padding: 12px;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+  overflow-y: auto; /* scroll only this panel if content exceeds height */
+}
+
+.config-panel h2 {
+  margin: 0 0 4px 0;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.9rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.field span {
+  font-size: 0.8rem;
+  color: #475569;
+}
+
+.field input,
+.field select,
+.field textarea {
+  border-radius: 6px;
+  border: 1px solid #cbd5e1;
+  padding: 6px 8px;
+  font-size: 0.9rem;
+}
+
+.field textarea {
+  min-height: 60px;
+  resize: vertical;
+}
+
+.checkbox-field {
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.kv-row {
+  display: flex;
+  gap: 4px;
+}
+
+.kv-row input {
+  flex: 1;
+}
+
+.small-button {
+  align-self: flex-start;
+  border-radius: 6px;
+  border: 1px solid #cbd5e1;
+  padding: 4px 8px;
+  font-size: 0.8rem;
+  background: #f8fafc;
+  cursor: pointer;
+}
+
+/* ---------------------------
+   Custom workflow node styling
+   --------------------------- */
+
+.wf-node {
+  padding: 10px 12px 10px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.85rem;
+}
+
+.wf-node-header {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.wf-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 0.65rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* Different pill colors per type */
+
+.wf-pill-start {
+  background: #bbf7d0;
+  color: #166534;
+}
+
+.wf-pill-task {
+  background: #bfdbfe;
+  color: #1d4ed8;
+}
+
+.wf-pill-approval {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.wf-pill-automation {
+  background: #ddd6fe;
+  color: #5b21b6;
+}
+
+.wf-pill-end {
+  background: #fecaca;
+  color: #b91c1c;
+}
+
+.wf-node-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.wf-node-meta {
+  font-size: 0.72rem;
+  color: #475569;
+  margin-top: 2px;
+}
+
+.wf-node-meta-label {
+  font-weight: 600;
+}
+
+.wf-node-meta-value {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+}
+
+/* ---------------------------
+   DARK THEME OVERRIDES
+   --------------------------- */
+
+body[data-theme='dark'] {
+  background-color: #020617;
+  color: #e5e7eb;
+}
+
+/* panels */
+body[data-theme='dark'] .sidebar,
+body[data-theme='dark'] .canvas-header,
+body[data-theme='dark'] .sandbox-panel,
+body[data-theme='dark'] .config-panel {
+  background: #020617;
+  border-color: #1e293b;
+}
+
+/* sidebar text */
+body[data-theme='dark'] .sidebar-subtitle,
+body[data-theme='dark'] .sidebar-hint,
+body[data-theme='dark'] .sandbox-hint,
+body[data-theme='dark'] .field span {
+  color: #94a3b8;
+}
+
+/* buttons */
+body[data-theme='dark'] .sidebar-button {
+  background: #020617;
+  color: #e5e7eb;
+  border-color: #1e293b;
+}
+
+body[data-theme='dark'] .sidebar-button:hover {
+  background: #111827;
+}
+
+body[data-theme='dark'] .config-panel {
+  color: #e5e7eb;
+}
+
+/* logs */
+body[data-theme='dark'] .error-box {
+  background: #7f1d1d;
+}
+
+body[data-theme='dark'] .log-box {
+  background: #064e3b;
+}
+
+/* theme button in dark */
+body[data-theme='dark'] .theme-button {
+  background: #0f172a;
+  color: #e5e7eb;
+}
