@@ -129,7 +129,7 @@ Each node opens a configuration form on the right:
 
 ```bash
 # Clone the repo
-git clone https://github.com/YOUR_USERNAME/CS-Workflow-Streamer.git
+git clone https://github.com/YOUR_USERNAME/CS-Workflow-Streamer.git](https://github.com/cshovik/CS-Workflow-Streamer.git
 
 # Install dependencies
 npm install
