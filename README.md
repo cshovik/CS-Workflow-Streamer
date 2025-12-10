@@ -168,5 +168,8 @@ http://localhost:5173
 3️⃣ Metrics dashboard.\
 4️⃣ Real automation API calls.\
 
+## Screenshot
+<img width="1919" height="868" alt="image" src="https://github.com/user-attachments/assets/42436b73-9aa4-4084-8aed-7f2771084d01" />
+
 
 
