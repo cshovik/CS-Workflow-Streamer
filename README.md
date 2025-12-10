@@ -8,120 +8,154 @@ Users can create steps, connect them, configure properties, and simulate executi
 
 ## 🚀 Overview
 
-**CS Work Streamer** is a dedicated workflow tool built specifically for the assignment to demonstrate **UI design** and **logical workflow execution**.
-
+**CS Work Streamer** is a dedicated workflow tool built specifically for the assignment.  
 It provides:
 
-* **Visual canvas** for graph editing
-* **Workflow simulation** and logging
-* **Validation rules** (Start/End required)
-* **Node configuration forms** for custom properties
-* **Simple UI** for testing and debugging workflows
+* **Visual canvas** for graph editing  
+* **Workflow simulation** and logging  
+* **Validation rules** (Start/End required)  
+* **Node configuration forms**
+
+The goal is to demonstrate:
+✔ UI design  
+✔ Logical workflow execution  
+✔ Simple UX for testing scenarios
 
 ---
 
-## 🔥 Features
+## 🎨 Features
 
-### 🎨 Visual Workflow Canvas
+### 🖼️ Visual Workflow Canvas
 
-* **Drag & drop** nodes onto a grid
-* Connect nodes with **arrows** (edges)
-* **Zoom / pan** functionality (using **React Flow**)
-* **Auto-fit** to viewport
-* **Minimap** for quick navigation
+* Drag & drop nodes onto a grid  
+* Connect nodes with arrows  
+* Zoom / pan (React Flow)  
+* Auto-fit inside viewport
+
+---
 
 ### 🔢 Node Types Supported
 
-| Node Type | Purpose |
-| :--- | :--- |
-| **Start** | Beginning of the workflow |
-| **Task** | Manual action with an assignee |
-| **Approval** | Manager or role-based approval step |
-| **Automation** | System action (mock API execution) |
-| **End** | Completion & summary |
+| Node Type     | Purpose                         |
+|-------------- |-------------------------------- |
+| **Start**     | Beginning of workflow           |
+| **Task**      | Manual action with assignee     |
+| **Approval**  | Manager approval step           |
+| **Automation**| System action (mock API)        |
+| **End**       | Completion + summary            |
+
+---
 
 ### ⚙️ Node Configuration Panel
 
-Clicking a node opens a dedicated configuration form. Editable properties include:
+Each node has editable properties:
 
-* ✔ Node label / title
-* ✔ Metadata fields
-* ✔ Role, assignee, summary, description, etc. (based on node type)
+✔ **Label / Title**  
+✔ **Properties based on node type**  
+✔ **Metadata, parameters, custom fields**  
+✔ **Dynamic input fields**
 
-### 🧪 Test & Debug Panel
+---
+
+## 🧪 Test & Debug Panel
 
 Includes:
 
-* **Validation** (e.g., Start + End nodes required)
-* **Simulation output panel**
-* **Ordered logs** showing each execution step
+* Validation (Start + End nodes required)
+* Simulation output panel
+* Colored log messages
 
-> **Example Output:**
->
-> ```text
-> Step 1: [START] Start
-> Step 2: [TASK] Task assigned
-> Step 3: [APPROVAL] Approved
-> Step 4: [AUTOMATION] Executed action
-> Step 5: [END] Completed
-> ✓ Workflow simulation completed
-> ```
+Example output:
+Start → Task → Approval → Automation → End
+Workflow completed successfully
+
 
 ---
 
-## 🏗️ Architecture Overview
+## 📁 Project Structure
 
-### 1️⃣ Canvas Rendering (React Flow)
-
-Used for:
-
-* Node rendering
-* Edge creation / connection
-* Drag / zoom and minimap
-> This is the most reliable solution for creating a graph editor UI.
-
-### 2️⃣ State Management
-
-The core workflow state is managed using React Flow's state hooks:
-
-* `useNodesState()`
-* `useEdgesState()`
-
-Node updates happen efficiently in-place by calling `updateNodeData(id, newData)` to preserve graph layout.
-
-### 3️⃣ Node Editing
-
-Each node type supports a different set of configurable fields, ensuring the configuration panel is context-aware:
-
-| Node Type | Editable Fields |
-| :--- | :--- |
-| **Start** | Metadata rows |
-| **Task** | Description, assignee, due date |
-| **Approval** | Role, approval threshold |
-| **Automation** | Action dropdown, parameters |
-| **End** | Summary text |
-
-### 4️⃣ Mock API Layer
-
-* Implemented in `mockApi.ts`.
-* Simulates the **Automation** node with a small async delay.
-* Generates the ordered log output used in the Test Panel.
-* **No real network dependency**, ensuring fast and reliable testing.
+src/
+│
+├── App.tsx # Main application & canvas
+├── workflowTypes.ts # Node types and interfaces
+├── mockApi.ts # Simulated automation actions
+├── main.tsx # Entry point for React
+├── index.css # Styling
+├── index.html # HTML host
+└── assets/ # Icons & images
 
 ---
 
-## 🛠️ Installation & Setup
+## 🏗 Architecture Overview
+
+### 1️⃣ Canvas Rendering
+
+Built using **React Flow** for:
+
+* Node rendering  
+* Edge creation  
+* Drag/zoom  
+* Mini-map & controls
+
+This is the most reliable solution for graph-based editors.
+
+---
+
+### 2️⃣ Node Storage
+
+State managed using:
+useNodesState()
+useEdgesState()
+
+Nodes update in-place via:
+updateNodeData(id, newData)
+
+
+---
+
+### 3️⃣ Forms for Editing
+
+Each node opens a configuration form on the right:
+
+* **Start** → metadata rows  
+* **Task** → description, due date  
+* **Approval** → role, threshold  
+* **Automation** → parameters  
+* **End** → completion message  
+
+---
+
+## 🛠 Installation
 
 ```bash
-# Clone the repository
-git clone [https://github.com/YOUR_USERNAME/CS-Work-Streamer.git](https://github.com/YOUR_USERNAME/CS-Work-Streamer.git)
-cd CS-Work-Streamer
+# Clone the repo
+git clone https://github.com/YOUR_USERNAME/CS-Workflow-Streamer.git
 
 # Install dependencies
 npm install
 
-# Start development server
+# Run locally
 npm run dev
 
-# Open in browser
-# http://localhost:5173
+# Open browser
+http://localhost:5173
+
+
+###🎯 How It Works
+
+1️⃣ Drag nodes onto the canvas
+2️⃣ Connect them with arrows
+3️⃣ Edit configuration in the side panel
+4️⃣ Click Test Workflow
+5️⃣ Logs appear at the bottom
+
+🔮 Future Enhancements
+
+Cycle detection (detect loops)
+
+Export / Import workflow JSON
+
+Metrics dashboard
+
+Real automation API calls
+
