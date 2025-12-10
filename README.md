@@ -73,14 +73,28 @@ Workflow completed successfully
 ## 📁 Project Structure
 
 ```bash
-src/
-├── App.tsx              # Main application & canvas
-├── workflowTypes.ts     # Node types and interfaces
-├── mockApi.ts           # Simulated automation actions
-├── main.tsx             # Entry point for React
-├── index.css            # Styling
-├── index.html           # HTML host
-└── assets/              # Icons & images
+CS-Workflow-Streamer/
+├── public/
+│   └── index.html            # HTML host
+│
+├── src/
+│   ├── assets/               # Icons & images
+│   ├── App.css               # Styling for app components
+│   ├── App.tsx               # Main application & canvas
+│   ├── index.css             # Global styles
+│   ├── main.tsx              # React entry point
+│   ├── mockApi.ts            # Simulated automation actions
+│   └── workflowTypes.ts      # Node types and interfaces
+│
+├── vite.config.ts            # Vite build configuration
+├── package.json              # Dependencies & scripts
+├── package-lock.json         # Dependency lock file
+├── tsconfig.json             # TypeScript config
+├── tsconfig.app.json         # App TypeScript config
+├── tsconfig.node.json        # Node TypeScript config
+├── eslint.config.js          # ESLint rules
+└── README.md                 # Documentation
+
 ```
 
 ## 🏗 Architecture Overview
