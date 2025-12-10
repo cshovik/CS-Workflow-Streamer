@@ -1,73 +1,203 @@
-# React + TypeScript + Vite
+💙 CS Work Streamer – Workflow Builder
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A visual workflow builder that lets users design automation sequences using drag-and-drop nodes.
+Users can create steps, connect them, configure properties, and simulate execution.
 
-Currently, two official plugins are available:
+🚀 Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+CS Work Streamer provides:
 
-## React Compiler
+Visual canvas
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Workflow simulation
 
-## Expanding the ESLint configuration
+Validation rules
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Node configuration forms
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Simple UI for testing workflows
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+It was built specifically for the assignment to demonstrate UI design + logical workflow execution.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+🔥 Features
+🎨 Visual Workflow Canvas
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Drag & drop nodes onto a grid
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Connect nodes with arrows
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Zoom / pan (React Flow)
+
+Auto-fit to viewport
+
+Minimap for navigation
+
+🔢 Node Types Supported
+Node Type	Purpose
+Start	Beginning of workflow
+Task	Manual action with assignee
+Approval	Manager approval step
+Automation	System action (mock API)
+End	Completion & summary
+⚙️ Node Configuration Panel
+
+Clicking a node opens a configuration form
+
+Editable properties include:
+
+✔ Node label / title
+✔ Metadata fields
+✔ Role, assignee, summary, etc.
+
+🧪 Test & Debug Panel
+
+Includes:
+
+Validation (Start + End nodes required)
+
+Simulation output panel
+
+Ordered logs showing each step
+
+Example output:
+
+Step 1: [START] Start
+Step 2: [TASK] Task assigned
+Step 3: [APPROVAL] Approved
+Step 4: [AUTOMATION] Executed action
+Step 5: [END] Completed
+✓ Workflow simulation completed
+
+📁 Project Structure
+src/
+│
+├─ App.tsx              # Main UI & workflow renderer
+├─ workflowTypes.ts     # TypeScript models
+├─ mockApi.ts           # Workflow simulation + async actions
+├─ index.css            # Global styles
+├─ main.tsx             # App mount
+└─ index.html           # Vite entry file
+
+🏗️ Architecture Overview
+1️⃣ Canvas Rendering (React Flow)
+
+Used for:
+
+Node rendering
+
+Edge creation
+
+Drag / zoom
+
+Minimap & viewport controls
+
+This is the most reliable solution for graph editors.
+
+2️⃣ State Management
+
+State is managed using:
+
+useNodesState()
+useEdgesState()
+
+
+Node updates happen in-place by:
+
+updateNodeData(id, newData)
+
+3️⃣ Node Editing
+
+Each node type supports different fields:
+
+Node Type	Editable Fields
+Start	Metadata rows
+Task	Description, assignee, due date
+Approval	Role, threshold
+Automation	Action dropdown, parameters
+End	Summary text
+4️⃣ Mock API Layer
+
+Implemented in mockApi.ts.
+
+Simulates automation with async delay
+
+Generates ordered log output
+
+No real network dependency
+
+5️⃣ Workflow Testing
+
+When user clicks Test Workflow:
+
+✔ Validate structure
+✔ Simulate step execution
+✔ Display log results
+
+Validation includes:
+
+At least 1 Start
+
+At least 1 End
+
+(Advanced validation like cycle detection is not added to avoid complexity.)
+
+🛠️ Installation & Setup
+# Clone repository
+git clone https://github.com/YOUR_USERNAME/CS-Work-Streamer.git
+cd CS-Work-Streamer
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+# Open browser
+http://localhost:5173
+
+🎯 How It Works
+
+Drag nodes onto canvas
+
+Connect them with arrows
+
+Click node to configure
+
+Click Test Workflow
+
+Logs appear on bottom panel
+
+⚡ Completed vs Future Work
+✅ Completed
+
+Visual workflow editor
+
+Node connections
+
+Node editing panel
+
+Simulation with logs
+
+Light/Dark theme toggle
+
+Clean UI
+
+🚧 Future Enhancements
+
+Cycle detection
+
+Export/Import workflow JSON
+
+Real automation API
+
+Dashboard metrics
+
+Permissions & roles
+
+🧾 Assignment Requirements
+Requirement	Status
+Workflow canvas	✅ Done
+Node editing panel	✅ Done
+Mock API layer	✅ Done
+Testing / Sandbox panel	✅ Done
+Architecture explanation	✅ Done
