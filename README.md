@@ -142,21 +142,20 @@ http://localhost:5173
 
 ```
 
-###🎯 How It Works
+##🎯 How It Works
 
-1️⃣ Drag nodes onto the canvas
-2️⃣ Connect them with arrows
-3️⃣ Edit configuration in the side panel
-4️⃣ Click Test Workflow
-5️⃣ Logs appear at the bottom
+1️⃣ Drag nodes onto the canvas.\
+2️⃣ Connect them with arrows.\
+3️⃣ Edit configuration in the side panel.\
+4️⃣ Click Test Workflo.\
+5️⃣ Logs appear at the bottom.\
 
-🔮 Future Enhancements
+##🔮 Future Enhancements
 
-Cycle detection (detect loops)
+1️⃣ Cycle detection (detect loops.\
+2️⃣ Export / Import workflow JSON.\
+3️⃣ Metrics dashboard.\
+4️⃣ Real automation API calls.\
 
-Export / Import workflow JSON
 
-Metrics dashboard
-
-Real automation API calls
 
